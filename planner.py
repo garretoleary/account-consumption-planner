@@ -1,19 +1,10 @@
 import csv
-import os
-import sys
 from collections import Counter, defaultdict
 from pathlib import Path
-
-from dotenv import load_dotenv
 
 
 BASE_DIR = Path(__file__).resolve().parent
 RECOVERY_ACCOUNTS = {"Norevix Capital Group"}
-load_dotenv(BASE_DIR / ".env")
-
-if not os.environ.get("OPENAI_API_KEY"):
-    print("ERROR: OPENAI_API_KEY was not found in .env.", file=sys.stderr)
-    raise SystemExit(2)
 
 
 def format_table(headers, rows):

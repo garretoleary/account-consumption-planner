@@ -16,7 +16,7 @@ When revenue follows usage, a forecast is only as good as the value the customer
 
 ## How to run it
 
-You need Python 3 and an OpenAI API key. The official OpenAI Python SDK reads the key from the `OPENAI_API_KEY` environment variable; this project loads that variable from a local `.env` file.
+You need Python 3 to run the planner. `planner.py` runs with no API key; only the three generator scripts and the optional `hello.py` connection check need an OpenAI API key. Those programs load the key from a local `.env` file into the `OPENAI_API_KEY` environment variable.
 
 1. Open a terminal in this folder.
 2. Create a private working environment:
@@ -32,20 +32,21 @@ You need Python 3 and an OpenAI API key. The official OpenAI Python SDK reads th
    python -m pip install -r requirements.txt
    ```
 
-4. Copy the safe example file:
-
-   ```bash
-   cp .env.example .env
-   ```
-
-5. Open `.env` yourself and replace `your_api_key_here` with your real key. Never put a real key in `.env.example`, any Python file, this README or an output file. The real `.env` file and the local `.venv` folder are excluded by `.gitignore`.
-6. Run the planner:
+4. Run the planner with no API key or `.env` file required:
 
    ```bash
    python planner.py
    ```
 
-The planner prints the division summary, book totals, value cases, prospect scores, forecast, evidence, pipeline and back-test. If it says the key is missing, check `.env`.
+To run one of the three generator scripts or the optional `hello.py` connection check, copy the safe example file:
+
+   ```bash
+   cp .env.example .env
+   ```
+
+Open `.env` yourself and replace `your_api_key_here` with your real key. Never put a real key in `.env.example`, any Python file, this README or an output file. The real `.env` file and the local `.venv` folder are excluded by `.gitignore`.
+
+The planner prints the division summary, book totals, value cases, prospect scores, forecast, evidence, pipeline and back-test without using the OpenAI API.
 
 The generator scripts call the OpenAI API and print a draft for review:
 
@@ -109,7 +110,7 @@ All data is invented, including every company, person, prospect, trigger and pri
 
 ## What I corrected
 
-See `corrections.md` for all fifteen logged corrections.
+See `corrections.md` for all sixteen logged corrections.
 
 - Signals now describe the last three months with one primary result, while the separate trend column covers twelve months.
 - Proven cases no longer add usage on top of the current run rate, and a recovery account carries no proposed case or pipeline.

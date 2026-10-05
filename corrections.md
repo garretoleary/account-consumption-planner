@@ -1118,3 +1118,36 @@ Log this. Two files must not take two positions on the same division. The accoun
 ## 15
 
 Two invented names contained a real company's name and were renamed.
+
+
+## 16
+
+### Draft
+
+The model wrote this in `planner.py`:
+
+```python
+from dotenv import load_dotenv
+
+load_dotenv(BASE_DIR / ".env")
+
+if not os.environ.get("OPENAI_API_KEY"):
+    print("ERROR: OPENAI_API_KEY was not found in .env.", file=sys.stderr)
+    raise SystemExit(2)
+```
+
+The model wrote this in `README.md`:
+
+```text
+You need Python 3 and an OpenAI API key. The official OpenAI Python SDK reads the key from the `OPENAI_API_KEY` environment variable; this project loads that variable from a local `.env` file.
+
+The planner prints the division summary, book totals, value cases, prospect scores, forecast, evidence, pipeline and back-test. If it says the key is missing, check `.env`.
+```
+
+### What is wrong and why
+
+Log this. planner.py makes no API call, so it must not demand a key. A reviewer should run it with no setup. One: remove the API key check from planner.py; keep it in the three generator scripts and hello.py. Two: in the README, say the planner runs with no key, and that only the generator scripts need one. Three: run python planner.py with no key present and confirm the totals are unchanged. Four: upload only planner.py, README.md and corrections.md to my repository, replacing the old versions. Never upload .env or .venv. Show me the result.
+
+### Fixed version
+
+`planner.py` no longer imports or loads dotenv and no longer checks for `OPENAI_API_KEY`; it runs locally without a key. The key checks remain in `generate_briefs.py`, `generate_deal_strategy.py`, `generate_account_plans.py` and `hello.py`. `README.md` now distinguishes the no-key planner from the API-backed generators and connection check. Running `planner.py` with `OPENAI_API_KEY` unset leaves the forecast and back-test totals unchanged.
