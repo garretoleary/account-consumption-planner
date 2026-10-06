@@ -104,6 +104,34 @@ The forecast is deliberately conservative: growth that no agreed case supports a
 
 Case values were set so each agreed or proven case returns at least three times its yearly usage cost, because that is the test I would apply to a real one. This is why several returns sit just above three: they clear the test without pretending to have more evidence than the invented case provides. Proposed cases must return at least two times yearly usage cost, but they still remain outside the middle forecast.
 
+## Worked example: manufacturing
+
+All data in this example is invented. Drauvik Industrial Group is not a real company, and no real company, customer or price is used.
+
+Drauvik Industrial Group is an invented European industrial manufacturer with four departments: production, quality, supply chain and operations. The customer has agreed one metric: unplanned downtime hours reduced.
+
+**The agreed case.** Production loses 9,000 unplanned downtime hours a year. The customer values each hour at $1,400 and has agreed a 12% reduction.
+
+- Metric: 9,000 hours/year × 12% = 1,080 unplanned downtime hours reduced per year.
+- Value: 1,080 hours/year × $1,400/hour = $1,512,000/year of downtime cost avoided.
+- Usage cost: 4,000,000,000 tokens/month × 12 months ÷ 1,000,000 × $10 = $480,000/year.
+- Customer return: $1,512,000 ÷ $480,000 = 3.15×, which clears the three-times rule.
+
+The case has a sponsor and an owner, so it may move the middle forecast. A 25% ramp estimate adds 3,000,000,000 tokens next quarter, which is $30,000.
+
+**Sample output.** Next-quarter consumption revenue against an invented target of $220,000:
+
+| Forecast | Revenue estimate | Gap to target | What supports it |
+|---|---:|---:|---|
+| Low | $184,350 | -$35,650 | Current run rate across the four departments |
+| Middle | $214,350 | -$5,650 | Low plus the agreed downtime case in production |
+| High | $214,350 | -$5,650 | Nothing more: no proposed case, no eligible pipeline |
+| Straight-line comparison | $194,434 | -$25,566 | Six-month trend only, shown for comparison |
+
+**How to read it.** The only growth counted is growth the customer has agreed, tied to downtime hours. Quality and supply chain add nothing above their run rate because neither has an agreed case yet. Operations has 120 active users on 400 seats, so it must raise adoption before any expansion is counted. The $5,650 gap is real: closing it needs a second agreed case, not a more hopeful trend line.
+
+This example is not one of the data files in this repository. Its figures were calculated with the planner's own forecast functions and follow the rules in How the forecast works.
+
 ## Honest limits
 
 All data is invented, including every company, person, prospect, trigger and price; nothing was researched. Every plan, brief, note and report is a draft that needs a person's judgment. The straight-line back-test error is shown for every account and for the whole book, and all five account errors are under-forecasts. The largest error belongs to the account where a new division appeared, which a trend line could not foresee. The back-test therefore supports a planning range, not a precise commitment.
